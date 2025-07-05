@@ -7,12 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* --- copy/paste the same :root + base styles from index.html --- */
     :root{--clr-primary:#0f62fe;--clr-accent:#28c000;--clr-gray-100:#f5f7f9;--clr-gray-200:#ebeff2;--clr-gray-300:#d0d7de;--radius:8px;--shadow:0 4px 16px rgba(0,0,0,.06)}
     *{box-sizing:border-box}body{margin:0;font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.55;background:var(--clr-gray-100);color:#14191f}
-    a{color:inherit;text-decoration:none}.btn{display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);font-weight:600;text-align:center}
+    a{color:inherit;text-decoration:none}.btn{display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);font-weight:600;text-align:center;cursor:pointer}
     .btn--primary{background:var(--clr-accent);color:#fff}.card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem}
-    /* Page-specific */
     .hero{max-width:1200px;margin:0 auto;padding:3.5rem 1.25rem;display:grid;gap:3rem}
     @media(min-width:1050px){.hero{grid-template-columns:1fr 400px;align-items:start}}
     .hero h1{font-size:clamp(2.2rem,5.5vw,3.4rem);margin:0 0 1rem;font-weight:700}
@@ -23,23 +21,23 @@
     .step h3{font-size:1.25rem;margin:1rem 0 .6rem}
     .faq{max-width:900px;margin:4rem auto 3rem;padding:0 1.25rem}
     details{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:1rem;padding:1.2rem}
-    summary{font-weight:600;cursor:pointer;outline:none}
-    summary::marker{color:var(--clr-accent)}
+    summary{font-weight:600;cursor:pointer;outline:none}summary::marker{color:var(--clr-accent)}
     footer{max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673}
   </style>
 </head>
 <body>
-  <!-- simple back-to-site nav -->
-  <header class="header" style="background:#fff;box-shadow:0 1px 0 var(--clr-gray-200)">
-    <nav class="nav" style="max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
-      <a href="index.html" class="logo" style="font-weight:700">Decentrafly</a>
-      <a href="index.html#demo" class="btn btn--primary" style="font-size:.9rem">Book&nbsp;a&nbsp;Demo</a>
+  <header style="background:#fff;box-shadow:0 1px 0 var(--clr-gray-200)">
+    <nav style="max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between">
+      <a href="index.html" style="font-weight:700">Decentrafly</a>
+      <div style="display:flex;gap:1rem">
+        <a href="refer.html" style="font-weight:600">Refer&nbsp;Program</a>
+        <a href="index.html#demo" class="btn btn--primary" style="font-size:.9rem">Book&nbsp;a&nbsp;Demo</a>
+      </div>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <!-- headline & copy -->
     <div>
       <h1>Share Airspace Safety<br>and Earn&nbsp;$500</h1>
       <p style="font-size:1.125rem;max-width:40ch;margin-bottom:1.5rem">
@@ -48,14 +46,14 @@
       </p>
       <p style="font-size:.925rem;color:#555">
         Just send us a decision-maker’s contact and we’ll take it from there.
-        By clicking “Submit” you agree to our Terms and Privacy Policy.
+        By clicking “Submit” you agree to our&nbsp;Terms and Privacy Policy.
       </p>
     </div>
 
-    <!-- referral form -->
+    <!-- Form -->
     <div class="card">
-      <h2 style="margin-top:0 0 1.2rem 0;font-size:1.6rem">Submit a Referral</h2>
-      <form action="https://formspree.io/f/xrbkvblz" method="POST">
+      <h2 style="margin:0 0 1.2rem;font-size:1.6rem">Submit a Referral</h2>
+      <form action="https://formspree.io/f/your-id" method="POST">
         <label for="your_name">Your Name*</label>
         <input id="your_name" name="your_name" required>
 
@@ -83,48 +81,23 @@
   <section class="steps">
     <h2>How It Works</h2>
     <div class="steps__grid">
-      <div class="step">
-        <h3>1&nbsp;·&nbsp;Spot a Good Fit</h3>
-        <p>Think police partners, utilities, universities, or venue operators that need drone detection.</p>
-      </div>
-      <div class="step">
-        <h3>2&nbsp;·&nbsp;Send Us Their Info</h3>
-        <p>Share a decision-maker’s details. We’ll handle the outreach and product demo.</p>
-      </div>
-      <div class="step">
-        <h3>3&nbsp;·&nbsp;Get $500</h3>
-        <p>When they sign, we send you a $500 thank-you. Easy.</p>
-      </div>
+      <div class="step"><h3>1 · Spot a Good Fit</h3><p>Think police partners, utilities, universities, or venue operators that need drone detection.</p></div>
+      <div class="step"><h3>2 · Send Us Their Info</h3><p>Share a decision-maker’s details. We’ll handle the outreach and product demo.</p></div>
+      <div class="step"><h3>3 · Get $500</h3><p>When they sign, we send you a $500 thank-you. Easy.</p></div>
     </div>
   </section>
 
-  <!-- FAQ (simple <details>/<summary>) -->
+  <!-- FAQ -->
   <section class="faq">
     <h2 style="font-size:1.8rem;margin-bottom:1.5rem;text-align:center">Referral FAQs</h2>
-
-    <details>
-      <summary>Who can participate?</summary>
-      <p>Anyone not employed by Decentrafly, except public-sector employees whose ethics rules prohibit financial rewards.</p>
-    </details>
-
-    <details>
-      <summary>Can I refer multiple organizations?</summary>
-      <p>Yes! There’s no limit. You’ll earn $500 for every referral that becomes a paying customer.</p>
-    </details>
-
-    <details>
-      <summary>Is there a time limit for the referral to convert?</summary>
-      <p>Your referral has up to 24 months to sign an agreement for you to remain eligible for the reward.</p>
-    </details>
-
-    <details>
-      <summary>How and when will I receive payment?</summary>
-      <p>Rewards are sent electronically the month after the customer’s first payment clears.</p>
-    </details>
+    <details><summary>Who can participate?</summary><p>Anyone not employed by Decentrafly, except public-sector employees whose ethics rules prohibit financial rewards.</p></details>
+    <details><summary>Can I refer multiple organizations?</summary><p>Yes! There’s no limit. You’ll earn $500 for every referral that becomes a paying customer.</p></details>
+    <details><summary>Is there a time limit for the referral to convert?</summary><p>Your referral has up to 24 months to sign an agreement for you to remain eligible.</p></details>
+    <details><summary>How and when will I receive payment?</summary><p>Rewards are sent electronically the month after the customer’s first payment clears.</p></details>
   </section>
 
   <footer>
-    © 2025 Decentrafly&nbsp;Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
+    © 2025 Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
   </footer>
 </body>
 </html>
