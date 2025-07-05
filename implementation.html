@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Decentrafly | Implementation Timeline</title>
+
+  <!-- ✨ Minimal styling – tweak as you like -->
+  <style>
+    :root {
+      --accent: #009688;          /* Decentrafly teal */
+      --bg-light: #f8f9fa;
+      --bg-dark: #e9ecef;
+      --radius: .75rem;
+    }
+    body        { font-family: system-ui, sans-serif; margin: 0; background: var(--bg-light); }
+    header      { background: var(--accent); color:#fff; padding:1.5rem 1rem; text-align:center; }
+    h1          { margin:.2rem 0 .5rem; font-size:1.9rem; }
+    main        { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+    details     { background: #fff; border-radius: var(--radius); box-shadow:0 1px 4px rgba(0,0,0,.08); margin-bottom:1rem; overflow:hidden; }
+    summary     { cursor:pointer; padding:1rem 1.25rem; list-style:none; font-weight:600; }
+    summary::marker { display:none; }               /* hide default arrow */
+    summary::-webkit-details-marker { display:none;}
+    summary:before { content:"›"; margin-right:.5rem; transition:.2s transform ease; }
+    details[open] summary:before { transform:rotate(90deg); }
+    .content    { border-top:1px solid var(--bg-dark); padding: 1rem 1.5rem 1.25rem; line-height:1.45; }
+    .phase-tag  { display:inline-block; background:var(--accent); color:#fff; padding:.15rem .5rem; border-radius:.4rem; font-size:.75rem; margin-right:.35rem; }
+    a.home      { display:inline-block; margin:2rem 0 0; text-decoration:none; color:var(--accent); font-weight:600; }
+    @media (prefers-color-scheme:dark){
+      body { background:#0d1117; color:#ddd; }
+      header { background:#0a9396; }
+      details{ background:#161b22; }
+      .content{border-top:1px solid #21262d;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Decentrafly Implementation Timeline</h1>
+    <p>From site selection to <em>go-live</em> in ~4–6 weeks</p>
+  </header>
+
+  <main>
+    <!-- ▼ Repeat this <details> block for each phase -->
+    <details open>
+      <summary><span class="phase-tag">Phase 1</span> Review Locations</summary>
+      <div class="content">
+        <strong>Who:</strong> Sales & Customer<br>
+        <strong>What:</strong> AE presents recommended mounting spots for ESPARGOS sensors; customer reviews Deployment Plan (≥5 locations).<br>
+        <strong>Notes:</strong> We pre-run RF & line-of-sight models.  Start HOA/municipal notice if needed.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 2</span> Finalize Locations</summary>
+      <div class="content">
+        Sign Service & Data-Sharing Agreement, kick off permits, arrange electrician if using AC power.  Rooftop installs receive stamped drawings.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 3</span> Site Survey & Flagging</summary>
+      <div class="content">
+        Field engineer validates solar exposure, RF noise floor, structural integrity, and FirstNet/LTE signal; flags install spots.  Alternate spots are proposed if anything fails.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 4</span> 811 Utility Locate</summary>
+      <div class="content">
+        Decentrafly files 811 tickets for every ground-mounted pole/trench (10 ft radius). Turnaround varies by state and is outside our control.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 5</span> Schedule Installation</summary>
+      <div class="content">
+        PM books crew window and ships any specialty hardware (receiver masts, “Just-a-Jetson” edge servers, FirstNet SIMs) to arrive 2–3 days ahead.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 6</span> Install & Commission</summary>
+      <div class="content">
+        Crew mounts hardware, aligns antenna array, activates backhaul, and runs acceptance tests (GNSS lock, mesh heartbeat, Remote ID capture, AWS GovCloud ingest). Baseline RF spectrum screenshot is recorded.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 7</span> Training & Go-Live</summary>
+      <div class="content">
+        Customer Success Manager (virtual) delivers portal training, alert setup, CJIS onboarding, and referral-program briefing. Teams are normally trained in under two hours.
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="phase-tag">Phase 8</span> Ongoing Support</summary>
+      <div class="content">
+        24 × 7 NOC monitoring, OTA firmware updates, quarterly coverage audits.  Additional ESPARGOS units dispatched if gaps appear.
+      </div>
+    </details>
+
+    <a href="index.html" class="home">← Back to Home</a>
+  </main>
+</body>
+</html>
