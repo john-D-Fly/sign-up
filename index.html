@@ -7,58 +7,33 @@
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --clr-primary: #0f62fe;          /* brand blue */
-      --clr-accent:  #28c000;         /* button green */
-      --clr-gray-100: #f5f7f9;
-      --clr-gray-200: #ebeff2;
-      --clr-gray-300: #d0d7de;
-      --radius: 8px;
-      --shadow: 0 4px 16px rgba(0,0,0,.06);
-    }
-
-    /* Base */
+    :root{--clr-primary:#0f62fe;--clr-accent:#28c000;--clr-gray-100:#f5f7f9;--clr-gray-200:#ebeff2;--clr-gray-300:#d0d7de;--radius:8px;--shadow:0 4px 16px rgba(0,0,0,.06)}
     *{box-sizing:border-box}
     body{margin:0;font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#14191f;line-height:1.55;background:var(--clr-gray-100)}
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block;border-radius:var(--radius)}
-
-    /* Utility */
     .btn{display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);font-weight:600;text-align:center;cursor:pointer}
     .btn--outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
     .btn--primary{background:var(--clr-accent);color:#fff}
-
-    /* Header */
     .header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)}
     .nav{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
     .nav__start{display:flex;align-items:center;gap:2.5rem}
     .logo{font-size:1.05rem;font-weight:700}
     .nav__links{display:none;gap:1.5rem}
     .nav__end{display:flex;gap:1rem;margin-left:auto}
-    @media(min-width:900px){
-      .nav__links{display:flex}
-    }
-
-    /* Hero */
+    @media(min-width:900px){.nav__links{display:flex}}
     .hero{max-width:1200px;margin:0 auto;padding:3rem 1.25rem;display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
-    @media(min-width:1050px){
-      .hero{grid-template-columns:1fr 400px}
-    }
+    @media(min-width:1050px){.hero{grid-template-columns:1fr 400px}}
     .hero__headline{font-size:clamp(2.2rem,5.5vw,3.5rem);font-weight:700;margin:0 0 1rem}
     .hero__sub{font-size:1.125rem;max-width:32ch;margin-bottom:2rem}
-
-    /* Bullet list */
     .list{margin-top:2.5rem;padding:0;list-style:none}
     .list li{display:flex;align-items:start;gap:.6rem;margin-bottom:.65rem}
     .list svg{flex:0 0 18px;fill:var(--clr-accent);margin-top:3px}
-
-    /* Form card */
     .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem}
     .card form{display:grid;gap:1rem}
-    .card input, .card select, .card textarea{padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);font-size:.95rem;width:100%}
+    .card input,.card select,.card textarea{padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);font-size:.95rem;width:100%}
     .card label{font-weight:500;font-size:.85rem;margin-bottom:.25rem;display:inline-block}
     .card button{border:0}
-
     footer{max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673}
   </style>
 </head>
@@ -74,8 +49,9 @@
           <a href="#customers">Customers</a>
           <a href="#resources">Resources</a>
           <a href="#company">Company</a>
-          <!-- NEW: Implementation link -->
           <a href="implementation.html">Implementation</a>
+          <!-- NEW -->
+          <a href="refer.html">Refer&nbsp;&amp;&nbsp;Earn</a>
         </div>
       </div>
       <div class="nav__end">
@@ -85,56 +61,56 @@
     </nav>
   </header>
 
-  <!-- Hero section -->
+  <!-- Hero -->
   <section class="hero">
-    <!-- Left column -->
     <div>
-      <h1 class="hero__headline">Ready to <br />Secure Airspace <br />Differently?</h1>
+      <h1 class="hero__headline">Ready to <br>Secure Airspace <br>Differently?</h1>
       <p class="hero__sub">Decentrafly helps public agencies, businesses, and communities detect drones, respond faster, and build safer skies together.</p>
-      <!-- NEW: Quick access button to timeline -->
-      <a href="implementation.html" class="btn btn--outline" style="margin-bottom:2rem">View Implementation Timeline</a>
 
-      <img src="https://images.unsplash.com/photo-1511203466129-824e631920d4?auto=format&fit=crop&w=700&q=60" alt="Decentrafly camera pole placeholder" />
+      <!-- NEW quick-link buttons -->
+      <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+        <a href="implementation.html" class="btn btn--outline">View Implementation Timeline</a>
+        <a href="refer.html" class="btn btn--primary">Refer&nbsp;&amp;&nbsp;Earn $500</a>
+      </div>
+
+      <img src="https://images.unsplash.com/photo-1511203466129-824e631920d4?auto=format&fit=crop&w=700&q=60" alt="Decentrafly camera pole placeholder">
 
       <h3 style="margin-top:2.5rem;font-size:1.25rem;font-weight:600">Discover the Decentrafly Difference:</h3>
       <ul class="list">
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path d="M6.173 12.927L1.416 8.17l1.414-1.414 3.343 3.342 7.071-7.07 1.414 1.413z"/></svg> The largest public-private air-safety network.</li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path d="M6.173 12.927L1.416 8.17l1.414-1.414 3.343 3.342 7.071-7.07 1.414 1.413z"/></svg> Technology that’s always up-to-date.</li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path d="M6.173 12.927L1.416 8.17l1.414-1.414 3.343 3.342 7.071-7.07 1.414 1.413z"/></svg> Privacy-first. Always accountable.</li>
-        <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path d="M6.173 12.927L1.416 8.17l1.414-1.414 3.343 3.342 7.071-7.07 1.414 1.413z"/></svg> Everything connected, no silos.</li>
+        <li><!-- checkmark -->🔹 The largest public-private air-safety network.</li>
+        <li>🔹 Technology that’s always up-to-date.</li>
+        <li>🔹 Privacy-first. Always accountable.</li>
+        <li>🔹 Everything connected, no silos.</li>
       </ul>
     </div>
 
-    <!-- Right column: form card -->
+    <!-- Form card -->
     <div class="card" id="demo">
-      <h2 style="margin-top:0;margin-bottom:1.2rem;font-size:1.75rem">Speak with an Expert</h2>
-      <form action="https://formspree.io/f/your-id" method="POST" class="demo__form">
+      <h2 style="margin:0 0 1.2rem;font-size:1.75rem">Speak with an Expert</h2>
+      <form action="https://formspree.io/f/your-id" method="POST">
         <div style="display:flex;gap:1rem">
-          <input type="text" name="first" placeholder="First Name*" required />
-          <input type="text" name="last" placeholder="Last Name*" required />
+          <input name="first" placeholder="First Name*" required>
+          <input name="last" placeholder="Last Name*" required>
         </div>
-        <input type="email" name="email" placeholder="Email Address*" required />
+        <input type="email" name="email" placeholder="Email Address*" required>
         <div style="display:flex;gap:1rem">
-          <input type="tel" name="phone" placeholder="Phone Number*" required />
-          <input type="text" name="zip" placeholder="ZIP Code*" required />
+          <input type="tel" name="phone" placeholder="Phone Number*" required>
+          <input name="zip" placeholder="ZIP Code*" required>
         </div>
-        <input type="text" name="org" placeholder="Organization Name*" required />
+        <input name="org" placeholder="Organization Name*" required>
         <select name="org_type" required>
           <option value="" disabled selected>Organization Type*</option>
-          <option>Law Enforcement</option>
-          <option>Airport / AAM</option>
-          <option>Critical Infrastructure</option>
-          <option>Enterprise</option>
-          <option>Other</option>
+          <option>Law Enforcement</option><option>Airport / AAM</option>
+          <option>Critical Infrastructure</option><option>Enterprise</option><option>Other</option>
         </select>
-        <button class="btn btn--primary" type="submit" style="width:100%;font-size:1rem">Submit</button>
-        <p style="font-size:.75rem;text-align:center;color:#6e7781">By tapping 'Submit', you agree to Decentrafly's <a href="#" style="color:var(--clr-primary)">Privacy Notice</a>.</p>
+        <button class="btn btn--primary" type="submit" style="width:100%">Submit</button>
+        <p style="font-size:.75rem;text-align:center;color:#6e7781">By tapping 'Submit', you agree to Decentrafly's <a href="#">Privacy&nbsp;Notice</a>.</p>
       </form>
     </div>
   </section>
 
   <footer>
-    © 2025 Decentrafly Inc. · <a href="#">Terms</a> · <a href="#">Privacy</a>
+    © 2025 Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
   </footer>
 </body>
 </html>
