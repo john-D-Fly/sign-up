@@ -1,93 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Global Drone Violations | Decentrafly</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="utf-8">
+  <title>Drone Violations • Decentrafly</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --clr-primary:#0f62fe;
-      --clr-accent:#28c000;
-      --clr-light:#f6f8fa;
-      --clr-dark:#1b1f23;
-      --radius:8px;
-      --shadow:0 4px 14px rgba(0,0,0,.06)
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',system-ui,sans-serif;line-height:1.55;background:var(--clr-light);color:var(--clr-dark)}
-    a{text-decoration:none;color:inherit}
-    /* NAV */
-    .nav{background:#fff;box-shadow:0 1px 0 #e5e9ec}
-    .nav__inner{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
-    .nav__links{display:flex;gap:1rem;align-items:center;font-size:.9rem;font-weight:500}
-    .btn{display:inline-block;padding:.7em 1.4em;border-radius:var(--radius);font-weight:600;text-align:center}
-    .btn--primary{background:var(--clr-primary);color:#fff}
-    /* HERO */
-    .hero{max-width:1200px;margin:2.5rem auto 1.5rem;padding:0 1.25rem;text-align:center}
-    .hero h1{font-size:clamp(2rem,5vw,3rem);margin-bottom:.75rem}
-    .hero p{max-width:55ch;margin:0 auto 1.5rem;font-size:1.05rem;color:#434c56}
-    /* TABLE */
-    .table-wrapper{max-width:1200px;margin:0 auto 2.5rem;padding:0 1.25rem}
-    table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-    thead{background:var(--clr-primary);color:#fff}
-    th,td{padding:.75rem 1rem;text-align:left;font-size:.9rem}
-    tbody tr:nth-child(even){background:#f1f4f7}
-    /* SMALL STATE */
-    #loading{padding:3rem 0;text-align:center;font-weight:500;color:#636e7d}
+    :root{--blue:#0f62fe;--green:#28c000;--gray:#f5f7f9;--radius:8px}
+    *{box-sizing:border-box;margin:0}
+    body{font-family:'Inter',system-ui,sans-serif;line-height:1.5;background:#fff;color:#121619}
+    header{background:#fff;border-bottom:1px solid #e1e4e8;position:sticky;top:0;z-index:10}
+    nav{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-weight:700;text-decoration:none;color:#000}
+    .btn{display:inline-block;padding:.55em 1.3em;border-radius:var(--radius);font-weight:600;text-decoration:none;font-size:.9rem}
+    .btn--primary{background:var(--green);color:#fff}
+    main{max-width:1200px;margin:2rem auto;padding:0 1.25rem}
+    h1{font-size:clamp(2rem,4.5vw,2.8rem);margin-bottom:.75rem}
+    section{margin-top:2.5rem}
+    table{width:100%;border-collapse:collapse;margin-top:.75rem}
+    th,td{padding:.6rem .4rem;text-align:left;border-bottom:1px solid #e1e4e8}
+    th{background:var(--gray);font-weight:600}
+    canvas{max-width:100%;margin-top:1rem;border:1px solid #e1e4e8;border-radius:var(--radius)}
+    footer{margin:3rem 0 2rem;text-align:center;font-size:.85rem;color:#586069}
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="nav__inner">
-      <a href="index.html" style="font-weight:700;font-size:1.1rem">Decentrafly</a>
-      <div class="nav__links">
-        <a href="refer.html">Refer &amp; Earn</a>
-        <a href="violations.html" class="btn btn--primary">Drone Violations DB</a>
+  <header>
+    <nav>
+      <a href="/index.html" class="logo">Decentrafly</a>
+      <div style="display:flex;gap:1rem">
+        <a href="/refer.html">Refer & Earn</a>
+        <a href="/sign-up/violations.html" class="btn btn--primary">Drone Violations DB</a>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Global Drone&nbsp;Violation Database</h1>
-    <p>An up‑to‑date index of public drone‑related incidents compiled from open sources.<br>Data refreshes automatically whenever this site redeploys.</p>
-  </section>
+  <main>
+    <h1>Drone Violations Dashboard</h1>
+    <p style="max-width:45ch">Live figures scraped from Dedrone’s public
+       <em>Drone Violations Database</em>, refreshed weekly by our GitHub Action.</p>
 
-  <!-- TABLE -->
-  <div class="table-wrapper">
-    <div id="loading">Fetching latest data…</div>
-    <table id="violations-table" style="display:none">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Country</th>
-          <th>City / Location</th>
-          <th>Summary</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-  </div>
+    <!-- Yearly totals ------------------------------------------------------->
+    <section>
+      <h2>Year-to-Date Violations (all categories)</h2>
+      <table id="yearTable">
+        <thead><tr><th>Year</th><th>Total</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Category totals ----------------------------------------------------->
+    <section>
+      <h2>2025 YTD by Category</h2>
+      <table id="catTable">
+        <thead><tr><th>Category</th><th>Total</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <!-- Monthly chart ------------------------------------------------------->
+    <section>
+      <h2>Monthly Violations – 2023</h2>
+      <canvas id="monthlyChart" height="320"></canvas>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
+  </footer>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 
   <script>
-    /* Fetch pre‑generated JSON (see workflow in README) */
-    fetch('data/violations.json')
+    /** Simple helpers **/
+    const fmt = n => n.toLocaleString('en-US');
+
+    fetch('/data/violations.json')
       .then(r => r.json())
-      .then(rows => {
-        const tbody = document.querySelector('#violations-table tbody');
-        rows.forEach(r => {
+      .then(data => {
+        /* ---------- Yearly totals table -------------------- */
+        const yrTbody = document.querySelector('#yearTable tbody');
+        Object.entries(data.yearly_totals).forEach(([year,total])=>{
           const tr = document.createElement('tr');
-          tr.innerHTML = `<td>${r.date || ''}</td><td>${r.country || ''}</td><td>${r.city || ''}</td><td>${r.summary || ''}</td>`;
-          tbody.appendChild(tr);
+          tr.innerHTML = `<td>${year}</td><td>${fmt(total)}</td>`;
+          yrTbody.appendChild(tr);
         });
-        document.getElementById('loading').style.display='none';
-        document.getElementById('violations-table').style.display='table';
+
+        /* ---------- Category totals table ------------------ */
+        const catTbody = document.querySelector('#catTable tbody');
+        Object.entries(data.category_totals).forEach(([cat,total])=>{
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${cat}</td><td>${fmt(total)}</td>`;
+          catTbody.appendChild(tr);
+        });
+
+        /* ---------- Monthly chart (2023) ------------------- */
+        const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const m23 = data.monthly_totals['2023'] || [];
+        const ctx = document.getElementById('monthlyChart');
+
+        new Chart(ctx, {
+          type:'line',
+          data:{
+            labels:months,
+            datasets:[{
+              label:'2023',
+              data:m23,
+              tension:.3,
+              borderWidth:2,
+              pointRadius:3,
+              fill:false
+            }]
+          },
+          options:{
+            plugins:{legend:{display:false}},
+            scales:{
+              y:{beginAtZero:false,ticks:{callback:fmt}}
+            }
+          }
+        });
       })
-      .catch(err => {
-        document.getElementById('loading').textContent = 'Unable to load data at the moment.';
-        console.error(err);
+      .catch(err=>{
+        console.error('JSON load failed',err);
+        alert('Could not load violations data.');
       });
   </script>
 </body>
