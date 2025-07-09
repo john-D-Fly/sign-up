@@ -1,38 +1,50 @@
 name: Update drone-violations data
 
 on:
-  workflow_dispatch:       # run manually
+  workflow_dispatch:       # run manually from the Actions tab
   schedule:
     - cron: '0 3 * * 1'    # every Monday @ 03:00 UTC
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+      - name: Check out repo
+        uses: actions/checkout@v4
 
-    - name: Fetch Dedrone HTML
-      run: curl -sL https://www.dedrone.com/drone-violations-database -o dedrone.html
+      - name: Fetch Dedrone HTML
+        run: curl -sL https://www.dedrone.com/drone-violations-database -o dedrone.html
 
-    - name: Convert to JSON
-      run: |
-        node - <<'NODE'
-        const fs = require('fs');
-        const cheerio = require('cheerio');
-        const $ = cheerio.load(fs.readFileSync('dedrone.html'));
-        const rows = [];
-        $('table tbody tr').each((_, tr) => {
-          const tds = $(tr).find('td').map((i,td)=>$(td).text().trim()).get();
-          rows.push({date:tds[0],location:tds[1],summary:tds[2]});
-        });
-        fs.mkdirSync('data',{recursive:true});
-        fs.writeFileSync('data/violations.json', JSON.stringify(rows, null, 2));
+      - name: Convert table ➜ JSON
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const cheerio = require('cheerio');
+
+          const $ = cheerio.load(fs.readFileSync('dedrone.html'));
+          const rows = [];
+
+          $('table tbody tr').each((_, tr) => {
+            const cols = $(tr).find('td').map((i, td) => $(td).text().trim()).get();
+            if (cols.length >= 3) {
+              rows.push({ date: cols[0], location: cols[1], summary: cols[2] });
+            }
+          });
+
+          fs.mkdirSync('data', { recursive: true });
+          fs.writeFileSync('data/violations.json', JSON.stringify(rows, null, 2));
 NODE
 
-    - name: Commit & push if changed
-      run: |
-        git config user.name  github-actions
-        git config user.email actions@users.noreply.github.com
-        git add data/violations.json
-        git diff --cached --quiet || git commit -m 'auto: refresh violations data'
-        git push
+      - name: Commit & push if data changed
+        run: |
+          git config user.name  "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+
+          if git diff --quiet data/violations.json; then
+            echo "No changes – nothing to commit."
+          else
+            git add data/violations.json
+            git commit -m "auto: refresh violations data"
+            git push
+          fi
