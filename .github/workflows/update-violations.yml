@@ -1,49 +1,38 @@
-name: Update drone-violations data
+name: Refresh drone-violations data
 
 on:
-  workflow_dispatch:       # run manually from the Actions tab
+  workflow_dispatch:            # manual trigger
   schedule:
-    - cron: '0 3 * * 1'    # every Monday @ 03:00 UTC
+    - cron: '0 3 * * 1'         # every Monday 03:00 UTC
 
 jobs:
-  build:
+  scrape:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Fetch Dedrone HTML
-        run: curl -sL https://www.dedrone.com/drone-violations-database -o dedrone.html
+      # Set up Python (you can pin a specific minor if preferred)
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
 
-      - name: Convert table ➜ JSON
+      # Install deps & run the scraper
+      - name: Run scraper
         run: |
-          node - <<'NODE'
-          const fs = require('fs');
-          const cheerio = require('cheerio');
+          python -m pip install --quiet requests beautifulsoup4
+          python scripts/update_violations.py
 
-          const $ = cheerio.load(fs.readFileSync('dedrone.html'));
-          const rows = [];
-
-          $('table tbody tr').each((_, tr) => {
-            const cols = $(tr).find('td').map((i, td) => $(td).text().trim()).get();
-            if (cols.length >= 3) {
-              rows.push({ date: cols[0], location: cols[1], summary: cols[2] });
-            }
-          });
-
-          fs.mkdirSync('data', { recursive: true });
-          fs.writeFileSync('data/violations.json', JSON.stringify(rows, null, 2));
-NODE
-
-      - name: Commit & push if data changed
+      # Commit only if the JSON changed
+      - name: Commit & push if changed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.name  "github-actions"
-          git config user.email "actions@users.noreply.github.com"
-
           if git diff --quiet data/violations.json; then
-            echo "No changes – nothing to commit."
+            echo "No changes."
           else
+            git config user.name  "github-actions"
+            git config user.email "actions@users.noreply.github.com"
             git add data/violations.json
             git commit -m "auto: refresh violations data"
             git push
