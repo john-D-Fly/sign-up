@@ -2,42 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Decentrafly&nbsp;| Book&nbsp;a&nbsp;Demo</title>
+  <title>Decentrafly | Book a Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
-    :root{--clr-primary:#0f62fe;--clr-accent:#28c000;--clr-gray-100:#f5f7f9;--clr-gray-200:#ebeff2;--clr-gray-300:#d0d7de;--radius:8px;--shadow:0 4px 16px rgba(0,0,0,.06)}
-    *{box-sizing:border-box}body{margin:0;font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#14191f;line-height:1.55;background:var(--clr-gray-100)}
-    a{color:inherit;text-decoration:none}img{max-width:100%;display:block;border-radius:var(--radius)}
-    .btn{display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);font-weight:600;text-align:center;cursor:pointer}
+    :root{
+      --clr-primary:#0f62fe;
+      --clr-accent:#28c000;
+      --clr-gray-100:#f5f7f9;
+      --clr-gray-200:#ebeff2;
+      --clr-gray-300:#d0d7de;
+      --radius:8px;
+      --shadow:0 4px 16px rgba(0,0,0,.06)
+    }
+    *{box-sizing:border-box;margin:0}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      color:#14191f;
+      line-height:1.55;
+      background:var(--clr-gray-100)
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .btn{
+      display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);
+      font-weight:600;text-align:center;cursor:pointer
+    }
     .btn--outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
     .btn--primary{background:var(--clr-accent);color:#fff}
-    .header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)}
-    .nav{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
-    .nav__start{display:flex;align-items:center;gap:2.5rem}.logo{font-size:1.05rem;font-weight:700}
-    .nav__links{display:none;gap:1.5rem}.nav__end{display:flex;gap:1rem;margin-left:auto}
+    /* Header / nav --------------------------------------------------------- */
+    .header{
+      background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)
+    }
+    .nav{
+      max-width:1200px;margin:0 auto;padding:1rem 1.25rem;
+      display:flex;align-items:center;justify-content:space-between;gap:1.5rem
+    }
+    .nav__start{display:flex;align-items:center;gap:2.5rem}
+    .logo{font-size:1.05rem;font-weight:700}
+    .nav__links{display:none;gap:1.5rem}
+    .nav__end{display:flex;gap:1rem;margin-left:auto}
     @media(min-width:900px){.nav__links{display:flex}}
-    .hero{max-width:1200px;margin:0 auto;padding:3rem 1.25rem;display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
+    /* Hero ----------------------------------------------------------------- */
+    .hero{
+      max-width:1200px;margin:0 auto;padding:3rem 1.25rem;
+      display:grid;grid-template-columns:1fr;gap:3rem;align-items:start
+    }
     @media(min-width:1050px){.hero{grid-template-columns:1fr 400px}}
     .hero__headline{font-size:clamp(2.2rem,5.5vw,3.5rem);font-weight:700;margin:0 0 1rem}
     .hero__sub{font-size:1.125rem;max-width:32ch;margin-bottom:2rem}
+    /* Tick list */
     .list{margin-top:2.5rem;padding:0;list-style:none}
     .list li{margin-bottom:.6rem;padding-left:1.4rem;position:relative}
     .list li::before{content:"✓";position:absolute;left:0;color:var(--clr-accent);font-weight:700}
-    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem}
-    .card form{display:grid;gap:1rem}.card input,.card select{padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);font-size:.95rem;width:100%}
+    /* Card/form */
+    .card{
+      background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem
+    }
+    .card form{display:grid;gap:1rem}
+    .card input,.card select{
+      padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);
+      font-size:.95rem;width:100%
+    }
+    /* Before–after image wrapper */
+    .hero__imgwrap{
+      position:relative;border-radius:var(--radius);overflow:hidden;margin-top:1rem
+    }
+    .hero__imgwrap img{display:block;width:100%}
+    .hero__imgwrap .after{
+      position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;
+      transition:opacity .8s
+    }
+    /* Hover/tap reveal */
+    .hero__imgwrap:hover .after,
+    .hero__imgwrap:active .after{opacity:1}
+    /* Auto cross-fade */
+    @keyframes crossFade{0%,45%{opacity:0}55%,100%{opacity:1}}
+    .hero__imgwrap.auto .after{animation:crossFade 8s infinite ease-in-out}
+    /* Footer */
     footer{max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673}
   </style>
 </head>
 <body>
+  <!-- ────────────── NAV ────────────── -->
   <header class="header">
     <nav class="nav">
       <div class="nav__start">
         <span class="logo">Decentrafly</span>
         <div class="nav__links">
-          <a href="#products">Products</a><a href="#industries">Industries</a><a href="#customers">Customers</a>
-          <a href="#resources">Resources</a><a href="#company">Company</a>
-          <a href="implementation.html">Implementation</a><a href="refer.html">Refer&nbsp;&amp;&nbsp;Earn</a>
+          <a href="#products">Products</a><a href="#industries">Industries</a>
+          <a href="#customers">Customers</a><a href="#resources">Resources</a>
+          <a href="#company">Company</a><a href="implementation.html">Implementation</a>
+          <a href="refer.html">Refer&nbsp;&amp;&nbsp;Earn</a>
         </div>
       </div>
       <div class="nav__end">
@@ -47,6 +104,7 @@
     </nav>
   </header>
 
+  <!-- ────────────── HERO ────────────── -->
   <section class="hero">
     <div>
       <h1 class="hero__headline">Ready to<br>Secure Airspace<br>Differently?</h1>
@@ -57,7 +115,11 @@
         <a href="refer.html" class="btn btn--primary">Refer&nbsp;&amp;&nbsp;Earn&nbsp;$500</a>
       </div>
 
-      <img src="https://pulmonary.medicine.ufl.edu/files/2020/08/I0000hdrSHjG78iE-1680x1120-1-1536x1024.jpg">
+      <!-- Before / After stadium image -->
+      <figure class="hero__imgwrap auto">
+        <img src="/Stadium.png" alt="Stadium with no drone-safety coverage">
+        <img class="after" src="/Stadium-dome.png" alt="Stadium protected by Decentrafly RF dome">
+      </figure>
 
       <h3 style="margin-top:2.5rem;font-size:1.25rem;font-weight:600">Why Decentrafly?</h3>
       <ul class="list">
@@ -68,30 +130,34 @@
       </ul>
     </div>
 
+    <!-- ── Demo Form ── -->
     <div class="card" id="demo">
       <h2 style="margin:0 0 1.2rem;font-size:1.75rem">Speak with an Expert</h2>
       <form action="https://formspree.io/f/xrbkvblz" method="POST">
         <div style="display:flex;gap:1rem">
-          <input name="first" placeholder="First Name*" required>
-          <input name="last" placeholder="Last Name*" required>
+          <input name="first" placeholder="First&nbsp;Name*" required>
+          <input name="last"  placeholder="Last&nbsp;Name*" required>
         </div>
-        <input type="email" name="email" placeholder="Email Address*" required>
+        <input type="email" name="email" placeholder="Email&nbsp;Address*" required>
         <div style="display:flex;gap:1rem">
-          <input type="tel" name="phone" placeholder="Phone Number*" required>
-          <input name="zip" placeholder="ZIP Code*" required>
+          <input type="tel" name="phone" placeholder="Phone&nbsp;Number*" required>
+          <input name="zip" placeholder="ZIP&nbsp;Code*" required>
         </div>
-        <input name="org" placeholder="Organization Name*" required>
+        <input name="org" placeholder="Organization&nbsp;Name*" required>
         <select name="org_type" required>
-          <option value="" disabled selected>Organization Type*</option>
+          <option value="" disabled selected>Organization&nbsp;Type*</option>
           <option>Public Safety</option><option>Aviation</option><option>Critical Infrastructure</option>
           <option>Enterprise</option><option>Other</option>
         </select>
         <button class="btn btn--primary" type="submit" style="width:100%">Submit</button>
-        <p style="font-size:.75rem;text-align:center;color:#6e7781">By tapping 'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.</p>
+        <p style="font-size:.75rem;text-align:center;color:#6e7781">
+          By tapping 'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.
+        </p>
       </form>
     </div>
   </section>
 
+  <!-- ────────────── FOOTER ────────────── -->
   <footer>
     © 2025 Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
   </footer>
