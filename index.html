@@ -31,10 +31,8 @@
     }
     .btn--outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
     .btn--primary{background:var(--clr-accent);color:#fff}
-    /* Header / nav --------------------------------------------------------- */
-    .header{
-      background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)
-    }
+    /* header / nav */
+    .header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)}
     .nav{
       max-width:1200px;margin:0 auto;padding:1rem 1.25rem;
       display:flex;align-items:center;justify-content:space-between;gap:1.5rem
@@ -44,7 +42,7 @@
     .nav__links{display:none;gap:1.5rem}
     .nav__end{display:flex;gap:1rem;margin-left:auto}
     @media(min-width:900px){.nav__links{display:flex}}
-    /* Hero ----------------------------------------------------------------- */
+    /* hero */
     .hero{
       max-width:1200px;margin:0 auto;padding:3rem 1.25rem;
       display:grid;grid-template-columns:1fr;gap:3rem;align-items:start
@@ -52,11 +50,11 @@
     @media(min-width:1050px){.hero{grid-template-columns:1fr 400px}}
     .hero__headline{font-size:clamp(2.2rem,5.5vw,3.5rem);font-weight:700;margin:0 0 1rem}
     .hero__sub{font-size:1.125rem;max-width:32ch;margin-bottom:2rem}
-    /* Tick list */
+    /* tick list */
     .list{margin-top:2.5rem;padding:0;list-style:none}
     .list li{margin-bottom:.6rem;padding-left:1.4rem;position:relative}
     .list li::before{content:"✓";position:absolute;left:0;color:var(--clr-accent);font-weight:700}
-    /* Card/form */
+    /* card / form */
     .card{
       background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem
     }
@@ -65,27 +63,20 @@
       padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);
       font-size:.95rem;width:100%
     }
-    /* Before–after image wrapper */
-    .hero__imgwrap{
-      position:relative;border-radius:var(--radius);overflow:hidden;margin-top:1rem
-    }
+    /* before–after image */
+    .hero__imgwrap{position:relative;border-radius:var(--radius);overflow:hidden;margin-top:1rem}
     .hero__imgwrap img{display:block;width:100%}
     .hero__imgwrap .after{
       position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;
       transition:opacity .8s
     }
-    /* Hover/tap reveal */
-    .hero__imgwrap:hover .after,
-    .hero__imgwrap:active .after{opacity:1}
-    /* Auto cross-fade */
+    .hero__imgwrap:hover .after,.hero__imgwrap:active .after{opacity:1}
     @keyframes crossFade{0%,45%{opacity:0}55%,100%{opacity:1}}
     .hero__imgwrap.auto .after{animation:crossFade 8s infinite ease-in-out}
-    /* Footer */
     footer{max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673}
   </style>
 </head>
 <body>
-  <!-- ────────────── NAV ────────────── -->
   <header class="header">
     <nav class="nav">
       <div class="nav__start">
@@ -104,7 +95,6 @@
     </nav>
   </header>
 
-  <!-- ────────────── HERO ────────────── -->
   <section class="hero">
     <div>
       <h1 class="hero__headline">Ready to<br>Secure Airspace<br>Differently?</h1>
@@ -117,20 +107,19 @@
 
       <!-- Before / After stadium image -->
       <figure class="hero__imgwrap auto">
-        <img src="Stadium.png" alt="Stadium with no drone-safety coverage">
-        <img class="after" src="Stadium-dome.png" alt="Stadium protected by Decentrafly RF dome">
+        <img src="stadium.png" alt="Stadium with no drone-safety coverage">
+        <img class="after" src="stadium-dome.png" alt="Stadium protected by Decentrafly RF dome">
       </figure>
 
       <h3 style="margin-top:2.5rem;font-size:1.25rem;font-weight:600">Why Decentrafly?</h3>
       <ul class="list">
-        <li>The nation’s largest community air-safety network</li>
-        <li>Always up-to-date protection</li>
-        <li>Privacy-first and transparent</li>
-        <li>Everything connected—no silos</li>
+        <li>Battle&nbsp;tested in a challenging&nbsp;urban environment since&nbsp;day&nbsp;one</li>
+        <li>Patented tamper-evident audit trail for&nbsp;CJIS&nbsp;data</li>
+        <li>100&nbsp;% NDAA hardware&nbsp;· Made&nbsp;in&nbsp;USA</li>
+        <li>API-ready integration for&nbsp;CAD&nbsp;and&nbsp;UTM</li>
       </ul>
     </div>
 
-    <!-- ── Demo Form ── -->
     <div class="card" id="demo">
       <h2 style="margin:0 0 1.2rem;font-size:1.75rem">Speak with an Expert</h2>
       <form action="https://formspree.io/f/xrbkvblz" method="POST">
@@ -151,15 +140,14 @@
         </select>
         <button class="btn btn--primary" type="submit" style="width:100%">Submit</button>
         <p style="font-size:.75rem;text-align:center;color:#6e7781">
-          By tapping 'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.
+          By tapping&nbsp;'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.
         </p>
       </form>
     </div>
   </section>
 
-  <!-- ────────────── FOOTER ────────────── -->
   <footer>
-    © 2025 Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
+    © 2025&nbsp;Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
   </footer>
 </body>
 </html>
