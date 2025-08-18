@@ -2,7 +2,7 @@
   "yearly_totals": {
     "2023": 1067112,
     "2024": 1234871,
-    "2025": 804223
+    "2025": 829575
   },
   "monthly_totals": {
     "2023": [
@@ -21,12 +21,12 @@
     ]
   },
   "category_totals": {
-    "FAA 400ft.": 486180,
-    "LAANC": 487848,
-    "Night Flights": 317972,
-    "Power Plants": 8054,
-    "Correctional Facilities": 13923,
-    "Events & Venues (TFR)": 11543
+    "FAA 400ft.": 501190,
+    "LAANC": 502515,
+    "Night Flights": 325970,
+    "Power Plants": 8291,
+    "Correctional Facilities": 14240,
+    "Events & Venues (TFR)": 12103
   },
   "category_breakdowns": {
     "FAA 400ft.": {
@@ -46,5 +46,5 @@
     }
   },
   "segments": {},
-  "scraped_at": "2025-08-11T03:37:54Z"
+  "scraped_at": "2025-08-18T03:36:58Z"
 }
