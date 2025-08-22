@@ -7,76 +7,108 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root{
-      --clr-primary:#0f62fe;
-      --clr-accent:#28c000;
+      --clr-primary:#1695ff;        /* Decentrafly blue */
+      --clr-accent:#28c000;         /* CTA green */
       --clr-gray-100:#f5f7f9;
       --clr-gray-200:#ebeff2;
       --clr-gray-300:#d0d7de;
-      --radius:8px;
-      --shadow:0 4px 16px rgba(0,0,0,.06)
+      --radius:10px;
+      --shadow:0 4px 16px rgba(0,0,0,.06);
+
+      /* calendar tokens */
+      --ink:#0e0b1f;
+      --ink-muted:#5a5670;
+      --card:#ffffff;
+      --ring:rgba(22,149,255,.45);
+      --border:#e6eefc;
+      --btn-bg:#eaf3ff;
+      --btn-bd:#cfe1ff;
+      --btn-fg:#0b3d91;
     }
     *{box-sizing:border-box;margin:0}
     body{
       margin:0;
       font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
-      color:#14191f;
-      line-height:1.55;
-      background:var(--clr-gray-100)
+      color:#14191f; line-height:1.55; background:var(--clr-gray-100)
     }
     a{color:inherit;text-decoration:none}
     img{max-width:100%;display:block}
-    .btn{
-      display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);
-      font-weight:600;text-align:center;cursor:pointer
-    }
+    .btn{display:inline-block;padding:.8em 1.6em;border-radius:var(--radius);font-weight:600;text-align:center;cursor:pointer}
     .btn--outline{border:2px solid var(--clr-primary);color:var(--clr-primary)}
     .btn--primary{background:var(--clr-accent);color:#fff}
+
     /* header / nav */
     .header{background:#fff;position:sticky;top:0;z-index:10;box-shadow:0 1px 0 var(--clr-gray-200)}
-    .nav{
-      max-width:1200px;margin:0 auto;padding:1rem 1.25rem;
-      display:flex;align-items:center;justify-content:space-between;gap:1.5rem
-    }
+    .nav{max-width:1200px;margin:0 auto;padding:1rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem}
     .nav__start{display:flex;align-items:center;gap:2.5rem}
     .logo{font-size:1.05rem;font-weight:700}
     .nav__links{display:none;gap:1.5rem}
     .nav__end{display:flex;gap:1rem;margin-left:auto}
     @media(min-width:900px){.nav__links{display:flex}}
+
     /* hero */
-    .hero{
-      max-width:1200px;margin:0 auto;padding:3rem 1.25rem;
-      display:grid;grid-template-columns:1fr;gap:3rem;align-items:start
-    }
+    .hero{max-width:1200px;margin:0 auto;padding:3rem 1.25rem;display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
     @media(min-width:1050px){.hero{grid-template-columns:1fr 400px}}
     .hero__headline{font-size:clamp(2.2rem,5.5vw,3.5rem);font-weight:700;margin:0 0 1rem}
     .hero__sub{font-size:1.125rem;max-width:32ch;margin-bottom:2rem}
+
     /* tick list */
     .list{margin-top:2.5rem;padding:0;list-style:none}
     .list li{margin-bottom:.6rem;padding-left:1.4rem;position:relative}
     .list li::before{content:"✓";position:absolute;left:0;color:var(--clr-accent);font-weight:700}
+
     /* card / form */
-    .card{
-      background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem
-    }
+    .card{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);padding:2rem}
     .card form{display:grid;gap:1rem}
-    .card input,.card select{
-      padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);
-      font-size:.95rem;width:100%
-    }
+    .card input,.card select{padding:.75em;border:1px solid var(--clr-gray-300);border-radius:var(--radius);font-size:.95rem;width:100%}
+
     /* before–after image */
     .hero__imgwrap{position:relative;border-radius:var(--radius);overflow:hidden;margin-top:1rem}
     .hero__imgwrap img{display:block;width:100%}
-    .hero__imgwrap .after{
-      position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;
-      transition:opacity .8s
-    }
+    .hero__imgwrap .after{position:absolute;top:0;left:0;width:100%;height:100%;opacity:0;transition:opacity .8s}
     .hero__imgwrap:hover .after,.hero__imgwrap:active .after{opacity:1}
     @keyframes crossFade{0%,45%{opacity:0}55%,100%{opacity:1}}
     .hero__imgwrap.auto .after{animation:crossFade 8s infinite ease-in-out}
-    footer{max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673}
+
+    /* schedule section */
+    .schedule{max-width:1200px;margin:0 auto;padding:2rem 1.25rem 4rem}
+    .schedule h2{font-size:1.9rem;margin:0 0 1rem}
+
+    /* calendar layout inside schedule */
+    .sched-wrap{display:grid;grid-template-columns:1.1fr 1.1fr;gap:18px}
+    @media (max-width:900px){.sched-wrap{grid-template-columns:1fr}}
+    .pane{background:var(--card);border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.08);overflow:hidden;border:1px solid var(--border)}
+    .pane-head{padding:18px 18px 10px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+    .pane-body{padding:16px}
+    .controls{display:flex;gap:10px;align-items:center}
+    .mini{font-size:12px;color:#6b7280}
+    .select{appearance:none;border:1px solid var(--border);padding:10px 12px;border-radius:10px;background:#fff;font-weight:600}
+    .btn{border-radius:10px}
+    .btn.sched-nav{background:var(--btn-bg);border:1px solid var(--btn-bd);color:var(--btn-fg);padding:8px 10px}
+
+    /* Calendar grid */
+    .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;color:#7e7a97;font-size:12px}
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+    .cal-day{aspect-ratio:1/1;border:1px solid var(--border);border-radius:10px;display:grid;place-items:center;background:#fff;cursor:pointer;user-select:none;transition:transform .1s ease, border-color .1s ease}
+    .cal-day:hover{transform:translateY(-1px);border-color:#9cc2ff}
+    .cal-day.is-today{outline:2px solid var(--ring)}
+    .cal-day.is-disabled{opacity:.35;cursor:not-allowed;background:#f8f7ff}
+    .cal-day.is-picked{background:linear-gradient(135deg,#f6f9ff,#ffffff);border-color:#69a9ff;box-shadow:inset 0 0 0 2px #69a9ff}
+
+    /* Slots */
+    .slot-list{display:flex;flex-direction:column;gap:10px;max-height:520px;overflow:auto;padding-right:8px}
+    .slot{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:#fff;cursor:pointer}
+    .slot:hover{border-color:#9cc2ff}
+    .slot.is-picked{box-shadow:inset 0 0 0 2px #69a9ff}
+    .empty{padding:16px;border:1px dashed var(--border);border-radius:12px;background:#fbfaff;color:#736c8e}
+    .summary{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:#fafafe;border:1px solid var(--border)}
+    .summary b{font-size:15px}
+    .cta{background:var(--clr-primary);color:#fff;border:none;padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer}
+    .cta:hover{filter:brightness(1.05)}
   </style>
 </head>
 <body>
+  <!-- NAV / HERO (Step 1) -->
   <header class="header">
     <nav class="nav">
       <div class="nav__start">
@@ -105,7 +137,6 @@
         <a href="refer.html" class="btn btn--primary">Refer&nbsp;&amp;&nbsp;Earn&nbsp;$500</a>
       </div>
 
-      <!-- Before / After stadium image -->
       <figure class="hero__imgwrap auto">
         <img src="Stadium.png" alt="Stadium with no drone-safety coverage">
         <img class="after" src="Stadium-dome.png" alt="Stadium protected by Decentrafly RF dome">
@@ -122,7 +153,7 @@
 
     <div class="card" id="demo">
       <h2 style="margin:0 0 1.2rem;font-size:1.75rem">Speak with an Expert</h2>
-      <form action="https://formspree.io/f/xrbkvblz" method="POST">
+      <form id="leadForm" action="https://formspree.io/f/xrbkvblz" method="POST">
         <div style="display:flex;gap:1rem">
           <input name="first" placeholder="First&nbsp;Name*" required>
           <input name="last"  placeholder="Last&nbsp;Name*" required>
@@ -139,15 +170,295 @@
           <option>Enterprise</option><option>Other</option>
         </select>
         <button class="btn btn--primary" type="submit" style="width:100%">Submit</button>
-        <p style="font-size:.75rem;text-align:center;color:#6e7781">
-          By tapping&nbsp;'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.
-        </p>
+        <p style="font-size:.75rem;text-align:center;color:#6e7781">By tapping&nbsp;'Submit', you agree to Decentrafly's <a href="#">Privacy Notice</a>.</p>
       </form>
+      <div id="leadThanks" style="display:none">
+        <div style="display:flex;gap:.6rem;align-items:center;margin-bottom:.6rem"><span style="display:inline-block;width:10px;height:10px;border-radius:999px;background:var(--clr-accent)"></span><strong>Thanks! You're in.</strong></div>
+        <p style="color:#4b5563;margin-bottom:0">Next, pick a time below to lock in your demo.</p>
+        <a href="#schedule" class="btn btn--outline" style="margin-top:1rem">Jump to calendar ↓</a>
+      </div>
     </div>
   </section>
 
-  <footer>
+  <!-- SCHEDULE (Step 2) -->
+  <section id="schedule" class="schedule" aria-label="Choose a time" style="display:none">
+    <h2>Schedule your demo</h2>
+    <p style="color:#4b5563;margin-bottom:1rem">All times adapt to your timezone. We’ll email you a confirmation.</p>
+
+    <div class="sched-wrap">
+      <!-- Calendar pane -->
+      <section class="pane" aria-label="Calendar">
+        <div class="pane-head">
+          <div class="controls">
+            <button class="btn sched-nav" id="prevMonth" aria-label="Previous month">◀</button>
+            <div id="monthLabel" style="font-weight:800"></div>
+            <button class="btn sched-nav" id="nextMonth" aria-label="Next month">▶</button>
+          </div>
+          <div class="controls">
+            <label class="mini" for="duration">Duration</label>
+            <select id="duration" class="select" aria-label="Meeting duration"></select>
+          </div>
+        </div>
+        <div class="pane-body">
+          <div class="cal-week"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div>
+          <div id="calGrid" class="cal-grid" role="grid" aria-label="Select a date"></div>
+          <div style="display:flex;gap:10px;align-items:center;margin-top:14px">
+            <label class="mini" for="tzPicker">Times shown in</label>
+            <select id="tzPicker" class="select"></select>
+            <span id="tzLabel" class="mini"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slots + form pane -->
+      <section class="pane">
+        <div class="pane-head"><div style="font-weight:800">Available times</div></div>
+        <div class="pane-body">
+          <div id="slotList" class="slot-list" aria-live="polite"></div>
+
+          <div class="summary" id="summary" hidden>
+            <div><b>Selected</b><div id="selHuman" class="mini"></div></div>
+            <form id="calendarForm" method="POST" action="https://formspree.io/f/mblknzjj">
+              <input type="hidden" name="_subject" value="New Decentrafly Demo Booking" />
+              <input type="hidden" name="iso_utc" id="isoUTC" />
+              <input type="hidden" name="date_base_tz" id="dateBase" />
+              <input type="hidden" name="date_local" id="dateLocal" />
+              <input type="hidden" name="time_local" id="timeLocal" />
+              <input type="hidden" name="timezone" id="tzHidden" />
+              <input type="hidden" name="duration_mins" id="durHidden" />
+              <!-- carry forward from Step 1 -->
+              <input type="hidden" name="name" id="nameHidden" />
+              <input type="hidden" name="email" id="emailHidden" />
+              <input type="hidden" name="company" id="companyHidden" />
+              <input type="hidden" name="phone" id="phoneHidden" />
+              <div class="row">
+                <label>Notes (optional)
+                  <textarea name="notes" rows="3" style="width:100%;margin-top:6px;border:1px solid var(--border);border-radius:10px;padding:10px"></textarea>
+                </label>
+              </div>
+              <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+                <button type="submit" class="cta">Confirm & Send</button>
+                <div class="mini">We’ll email you details immediately.</div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <footer style="max-width:1200px;margin:4rem auto 2rem;padding:0 1.25rem;font-size:.825rem;color:#5b6673">
     © 2025&nbsp;Decentrafly Inc. • <a href="#">Terms</a> • <a href="#">Privacy</a>
   </footer>
+
+<script>
+(() => {
+  // =====================
+  // STEP 1: Lead capture
+  // =====================
+  const leadForm = document.getElementById('leadForm');
+  const leadThanks = document.getElementById('leadThanks');
+  const scheduleSection = document.getElementById('schedule');
+
+  leadForm?.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const fd = new FormData(leadForm);
+    try{
+      const res = await fetch(leadForm.action, { method:'POST', body: fd, headers: { 'Accept': 'application/json' }});
+      // optimistic reveal on any response (Formspree returns 200/302)
+      leadForm.style.display='none';
+      leadThanks.style.display='block';
+      scheduleSection.style.display='block';
+      location.hash = '#schedule';
+      // hydrate hidden fields for calendar
+      const name = `${fd.get('first')||''} ${fd.get('last')||''}`.trim();
+      document.getElementById('nameHidden').value = name;
+      document.getElementById('emailHidden').value = fd.get('email')||'';
+      document.getElementById('phoneHidden').value = fd.get('phone')||'';
+      document.getElementById('companyHidden').value = fd.get('org')||'';
+    }catch(err){
+      alert('There was an issue submitting your info. Please try again.');
+    }
+  });
+
+  // Also allow direct anchors to open schedule (e.g., returning visitors)
+  if(location.hash==='#schedule'){ scheduleSection.style.display='block'; }
+
+  // =====================
+  // STEP 2: Calendar logic
+  // =====================
+  const CONFIG = {
+    scheduleTimeZone: 'America/New_York',
+    defaultDuration: 30,
+    slotDurations: [15, 30, 45, 60],
+    workHours: { 0:null, 1:['09:00','17:30'], 2:['09:00','17:30'], 3:['09:00','17:30'], 4:['09:00','17:30'], 5:['10:00','15:00'], 6:null },
+    dailyBreaks: [['12:00','13:00']],
+    blackoutDates: [],
+    customSlots: { /* e.g., '2025-08-21': ['18:15','18:30','18:45','19:00','19:15','19:30'] */ },
+    openWindowDays: 120
+  };
+
+  // Elements
+  const monthLabel = document.getElementById('monthLabel');
+  const calGrid = document.getElementById('calGrid');
+  const prevBtn = document.getElementById('prevMonth');
+  const nextBtn = document.getElementById('nextMonth');
+  const slotList = document.getElementById('slotList');
+  const tzPicker = document.getElementById('tzPicker');
+  const tzLabel = document.getElementById('tzLabel');
+  const durationSel = document.getElementById('duration');
+  const summary = document.getElementById('summary');
+  const selHuman = document.getElementById('selHuman');
+  const isoUTC = document.getElementById('isoUTC');
+  const dateBase = document.getElementById('dateBase');
+  const dateLocal = document.getElementById('dateLocal');
+  const timeLocal = document.getElementById('timeLocal');
+  const tzHidden = document.getElementById('tzHidden');
+  const durHidden = document.getElementById('durHidden');
+
+  // Carry forward if query params exist (optional direct link)
+  const q = new URLSearchParams(location.search);
+  ['name','email','company','phone'].forEach(k=>{
+    const v = q.get(k); if(v){ const el = document.getElementById(k+'Hidden'); if(el) el.value = v; }
+  });
+
+  // Populate duration select
+  CONFIG.slotDurations.forEach(mins=>{
+    const opt = document.createElement('option');
+    opt.value = String(mins);
+    opt.textContent = `${mins} mins`;
+    if(mins === CONFIG.defaultDuration) opt.selected = true;
+    durationSel.appendChild(opt);
+  });
+
+  // Timezone picker
+  const commonTZ = Array.from(new Set([
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
+    'America/New_York','America/Chicago','America/Denver','America/Los_Angeles',
+    'Europe/London','Europe/Paris','Asia/Dubai','Asia/Singapore','Australia/Sydney','UTC'
+  ]));
+  for(const tz of commonTZ){
+    const o = document.createElement('option'); o.value = tz; o.textContent = tz; tzPicker.appendChild(o);
+  }
+  tzPicker.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  // State
+  let viewMonth = new Date(); viewMonth.setDate(1);
+  let pickedDate = null; let pickedSlot = null;
+
+  // Helpers
+  function fmtTZOffset(tz, onDate){
+    const dt = onDate || new Date();
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: tz, timeZoneName: 'shortOffset' }).formatToParts(dt);
+    const tzOff = parts.find(p=>p.type==='timeZoneName')?.value || '';
+    return tzOff.replace('GMT','UTC');
+  }
+  function fmtHuman(d, tz, opts={}){
+    const o = Object.assign({ timeZone: tz, weekday:'short', year:'numeric', month:'short', day:'2-digit', hour:'numeric', minute:'2-digit' }, opts);
+    return new Intl.DateTimeFormat('en-US', o).format(d);
+  }
+  function toYMDInTZ(date, tz){
+    const parts = new Intl.DateTimeFormat('en-CA', { timeZone: tz, year:'numeric', month:'2-digit', day:'2-digit'}).formatToParts(date);
+    const map = Object.fromEntries(parts.map(p=>[p.type,p.value]));
+    return `${map.year}-${map.month}-${map.day}`;
+  }
+  function makeInstantFromZoned(y,m,d,hh,mm,tz){
+    const localWall = new Date(y, m-1, d, hh, mm, 0);
+    const inv = new Date(localWall.toLocaleString('en-US',{ timeZone: tz }));
+    const diff = localWall.getTime() - inv.getTime();
+    return new Date(localWall.getTime() + diff);
+  }
+  function withinWindow(dateStr){
+    const today = new Date(); today.setHours(0,0,0,0);
+    const until = new Date(today); until.setDate(until.getDate()+CONFIG.openWindowDays);
+    const [y,m,d] = dateStr.split('-').map(n=>parseInt(n,10));
+    const base = makeInstantFromZoned(y,m,d,0,0,CONFIG.scheduleTimeZone);
+    return base >= today && base <= until;
+  }
+  function isBlackout(dateStr){ return CONFIG.blackoutDates.includes(dateStr); }
+  function genHalfHourTicks(start,end){
+    const ticks=[]; const [sh,sm]=start.split(':').map(n=>+n); const [eh,em]=end.split(':').map(n=>+n);
+    let m = sh*60+sm; const endM = eh*60+em;
+    while(m < endM){ ticks.push([Math.floor(m/60), m%60].map(x=>String(x).padStart(2,'0')).join(':')); m += 30; }
+    return ticks;
+  }
+  function isInBreaks(timeStr){
+    return CONFIG.dailyBreaks?.some(([b,e])=>{
+      const [bh,bm]=b.split(':').map(Number); const [eh,em]=e.split(':').map(Number);
+      const [th,tm]=timeStr.split(':').map(Number); const mins = th*60+tm;
+      return mins >= (bh*60+bm) && mins < (eh*60+em);
+    });
+  }
+
+  function renderMonth(){
+    const monthFmt = new Intl.DateTimeFormat('en-US', { month:'long', year:'numeric', timeZone: CONFIG.scheduleTimeZone });
+    monthLabel.textContent = monthFmt.format(viewMonth);
+
+    calGrid.innerHTML='';
+    const weekIndex = new Date(viewMonth.getFullYear(), viewMonth.getMonth(), 1).getDay();
+    for(let i=0;i<weekIndex;i++){ const spacer=document.createElement('div'); spacer.className='cal-day is-disabled'; spacer.setAttribute('aria-hidden','true'); calGrid.appendChild(spacer); }
+    const daysInMonth = new Date(viewMonth.getFullYear(), viewMonth.getMonth()+1, 0).getDate();
+    const todayYMD = toYMDInTZ(new Date(), CONFIG.scheduleTimeZone);
+
+    for(let d=1; d<=daysInMonth; d++){
+      const y = viewMonth.getFullYear(); const m = viewMonth.getMonth()+1;
+      const dateStr = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const btn = document.createElement('button'); btn.className='cal-day'; btn.textContent=d; btn.setAttribute('role','gridcell');
+      if(dateStr===todayYMD) btn.classList.add('is-today');
+      const allowed = withinWindow(dateStr) && !isBlackout(dateStr) && (!!CONFIG.workHours[new Date(y,m-1,d).getDay()] || CONFIG.customSlots[dateStr]);
+      if(!allowed){ btn.classList.add('is-disabled'); btn.disabled=true; }
+      else { btn.addEventListener('click', ()=>{ pickedDate=dateStr; [...calGrid.querySelectorAll('.cal-day')].forEach(el=>el.classList.remove('is-picked')); btn.classList.add('is-picked'); renderSlots();}); }
+      calGrid.appendChild(btn);
+    }
+  }
+
+  function renderSlots(){
+    slotList.innerHTML=''; pickedSlot=null; summary.hidden=true;
+    if(!pickedDate){ slotList.innerHTML = `<div class="empty">Pick a date to see available times.</div>`; return; }
+
+    const y = +pickedDate.slice(0,4); const m = +pickedDate.slice(5,7); const d = +pickedDate.slice(8,10);
+    const dow = new Date(y,m-1,d).getDay();
+    let ticks=[];
+    if(CONFIG.customSlots[pickedDate]) ticks = CONFIG.customSlots[pickedDate];
+    else if(CONFIG.workHours[dow]){ const [start,end]=CONFIG.workHours[dow]; ticks = genHalfHourTicks(start,end).filter(t=>!isInBreaks(t)); }
+    if(!ticks.length){ slotList.innerHTML = `<div class="empty">No slots on this date. Try another day.</div>`; return; }
+
+    const duration = parseInt(durationSel.value,10); const tzDisplay = tzPicker.value; tzLabel.textContent = `${fmtTZOffset(tzDisplay)} ${tzDisplay.replace('_',' ')}`;
+    ticks.forEach(tStr=>{
+      const [hh,mm] = tStr.split(':').map(Number);
+      const startInstant = makeInstantFromZoned(y,m,d,hh,mm,CONFIG.scheduleTimeZone);
+      const li = document.createElement('div'); li.className='slot'; li.tabIndex=0; li.setAttribute('role','button');
+      const label = fmtHuman(startInstant, tzDisplay, { month:'short', day:'2-digit', hour:'numeric', minute:'2-digit' });
+      li.setAttribute('aria-label', `Select ${label}`);
+      li.innerHTML = `<div>${label}</div><div class="mini">${duration}m</div>`;
+      li.addEventListener('click', ()=>selectSlot(startInstant, label, duration));
+      li.addEventListener('keypress', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); selectSlot(startInstant, label, duration);} });
+      slotList.appendChild(li);
+    });
+  }
+
+  function selectSlot(instant, label, duration){
+    [...slotList.querySelectorAll('.slot')].forEach(el=>el.classList.remove('is-picked'));
+    const idx = Array.from(slotList.children).findIndex(el => el.textContent.includes(label)); if(idx>-1) slotList.children[idx].classList.add('is-picked');
+    summary.hidden=false; selHuman.textContent = `${label} · ${fmtTZOffset(tzPicker.value)} (${tzPicker.value})`;
+    isoUTC.value = instant.toISOString(); durHidden.value = String(duration); tzHidden.value = tzPicker.value;
+    const baseLabel = fmtHuman(instant, CONFIG.scheduleTimeZone, { month:'short', day:'2-digit', year:'numeric', hour:'numeric', minute:'2-digit' });
+    dateBase.value = `${baseLabel} (${CONFIG.scheduleTimeZone})`;
+    dateLocal.value = new Intl.DateTimeFormat('en-CA', { timeZone: tzPicker.value, year:'numeric', month:'2-digit', day:'2-digit' }).format(instant);
+    timeLocal.value = new Intl.DateTimeFormat('en-US', { timeZone: tzPicker.value, hour:'numeric', minute:'2-digit' }).format(instant);
+  }
+
+  // Wire calendar controls
+  document.getElementById('prevMonth').addEventListener('click', ()=>{ viewMonth.setMonth(viewMonth.getMonth()-1); renderMonth(); });
+  document.getElementById('nextMonth').addEventListener('click', ()=>{ viewMonth.setMonth(viewMonth.getMonth()+1); renderMonth(); });
+  durationSel.addEventListener('change', renderSlots);
+  tzPicker.addEventListener('change', renderSlots);
+
+  // Initial calendar render
+  renderMonth();
+  slotList.innerHTML = `<div class="empty">Pick a date to see available times.</div>`;
+})();
+</script>
 </body>
 </html>
