@@ -21,12 +21,12 @@
     ]
   },
   "category_totals": {
-    "FAA 400ft.": 490648,
-    "LAANC": 557621,
-    "Night Flights": 461456,
-    "Power Plants": 7053,
-    "Correctional Facilities": 70215,
-    "Events & Venues (TFR)": 218
+    "FAA 400ft.": 763937,
+    "LAANC": 768657,
+    "Night Flights": 564346,
+    "Power Plants": 15265,
+    "Correctional Facilities": 23521,
+    "Events & Venues (TFR)": 19190
   },
   "category_breakdowns": {
     "FAA 400ft.": {
@@ -46,5 +46,5 @@
     }
   },
   "segments": {},
-  "scraped_at": "2026-08-10T04:44:47Z"
+  "scraped_at": "2026-08-17T03:55:14Z"
 }
